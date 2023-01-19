@@ -175,7 +175,7 @@ public class ContactList
     // TODO: Write searchByPhoneNumber
     public Person searchByPhoneNumber(String PN) {
         for (int i = 0; i < contacts.size(); i++) {
-            if(contacts.get(i).getLastName().equals(PN)) {
+            if(contacts.get(i).getPhoneNumber().equals(PN)) {
                 return contacts.get(i);
             }
         }
@@ -225,6 +225,7 @@ public class ContactList
             else if(ans == 6) {
                 ans = 0;
                 System.out.println("What name would you like to search by? ");
+                s.nextLine();
                 String first = s.nextLine();
                 System.out.println(searchByFirstName(first));
                 ans = 6;
@@ -232,13 +233,15 @@ public class ContactList
             else if(ans == 7) {
                 ans = 0;
                 System.out.println("What name would you like to search by? ");
+                s.nextLine();
                 String last = s.nextLine();
                 System.out.println(searchByLastName(last));
                 ans = 7;
             }
             else if(ans == 8) {
                 ans = 0;
-                System.out.println("What name would you like to search by? ");
+                System.out.println("What number would you like to search by? ");
+                s.nextLine();
                 String PN = s.nextLine();
                 System.out.println(searchByPhoneNumber(PN));
                 ans = 8;
