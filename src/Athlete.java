@@ -11,6 +11,6 @@ public class Athlete extends Person{
 
     @Override
     public String toString() {
-        return super.toString() + "Sport: " + sport;
+        return super.toString() + " Sport: " + sport;
     }
 }
