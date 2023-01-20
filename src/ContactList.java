@@ -12,6 +12,11 @@ import java.util.Scanner;
  * @version: 2022-2023
  */
 
+/**
+ * Sohan Gaitonde
+ * Contact List
+ * 01/19/2023
+ */
 public class ContactList
 {
     // TODO: Create your array contacts
@@ -20,6 +25,7 @@ public class ContactList
     // TODO: Write a Constructor
 
     public ContactList() {
+        // constructor
         this.contacts = new ArrayList<Person>();
     }
 
@@ -43,16 +49,19 @@ public class ContactList
     public void addContact() {
         // TODO: Complete the addContact method
         int answer = 0;
+        // Initializes variables
         String first = "";
         String last = "";
         String pn = "";
         Scanner input = new Scanner(System.in);
+        // get a valid input about what type of contact they would like to add
         while(answer != 1 && answer != 2) {
             System.out.println("Select the type of contact to add:");
             System.out.println("1. Student");
             System.out.println("2. Athlete");
             answer = input.nextInt();
         }
+        // get general information about contact
         System.out.println("Please fill in the following information.");
         System.out.println("First Name: ");
         first = input.nextLine();
@@ -61,6 +70,7 @@ public class ContactList
         last = input.nextLine();
         System.out.println("Phone Number: ");
         pn = input.nextLine();
+        // get specific information about contact
         if (answer == 1) {
             int grade = 0;
             System.out.println("Grade: ");
@@ -95,20 +105,25 @@ public class ContactList
     public void sort(int sortBy) {
         // TODO: Complete the sort method
         int comparator;
+        // sort based on first name, last name or phone number
         if(sortBy == 0) {
             for(int i = 0; i < contacts.size(); i++) {
                 comparator = 0;
+                // if only one person is in the contact list print them out
                 if(contacts.size() == 1) {
                     System.out.println(contacts.get(i));
                 }
+                // if this is not the end of the contact list compare the two
                 if (i < contacts.size() - 1) {
                    comparator = contacts.get(i).getFirstName().compareTo(contacts.get(i+1).getFirstName());
                 }
+                // if the contacts need to be swapped, swap them
                 if (comparator > 0) {
                     Person swapper = contacts.remove(i);
                     contacts.add(i+1, swapper);
                 }
             }
+            // print out the sorted list
             for(int i = 0; i < contacts.size(); i++) {
                 System.out.println(contacts.get(i));
             }
@@ -154,6 +169,7 @@ public class ContactList
 
     // TODO: Write searchByFirstName
     public Person searchByFirstName(String first) {
+        // goes through the contacts and compares them one by one to the string
         for (int i = 0; i < contacts.size(); i++) {
             if(contacts.get(i).getFirstName().equals(first)) {
                 return contacts.get(i);
@@ -164,6 +180,7 @@ public class ContactList
 
     // TODO: Write searchByLastName
     public Person searchByLastName(String last) {
+        // goes through the contacts and compares them one by one to the string
         for (int i = 0; i < contacts.size(); i++) {
             if(contacts.get(i).getLastName().equals(last)) {
                 return contacts.get(i);
@@ -174,6 +191,7 @@ public class ContactList
 
     // TODO: Write searchByPhoneNumber
     public Person searchByPhoneNumber(String PN) {
+        // goes through the contacts and compares them one by one to the string
         for (int i = 0; i < contacts.size(); i++) {
             if(contacts.get(i).getPhoneNumber().equals(PN)) {
                 return contacts.get(i);
@@ -187,6 +205,7 @@ public class ContactList
      */
     public void listStudents() {
         // TODO: Complete the listStudents method
+        // if a contact is a member of the student class, print it out
         for(int i = 0; i < contacts.size(); i++) {
             if(contacts.get(i) instanceof Student) {
                 System.out.println(contacts.get(i));
@@ -202,11 +221,13 @@ public class ContactList
         // TODO: Complete the run method
         int ans = -1;
         Scanner s = new Scanner(System.in);
+        // while the answer isnt the exit code always run this code
         while(ans != 0) {
             System.out.println("Welcome to your Contacts List");
             System.out.println("Please pick from the following menu options");
             printMenuOptions();
             ans = s.nextInt();
+            // run the correct method depending on user input
             if(ans == 1) {
                 addContact();
             }
@@ -223,6 +244,7 @@ public class ContactList
                 listStudents();
             }
             else if(ans == 6) {
+                // get necessary information for the search methods
                 ans = 0;
                 System.out.println("What name would you like to search by? ");
                 s.nextLine();
@@ -253,8 +275,7 @@ public class ContactList
     }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         ContactList cl = new ContactList();
         cl.run();
     }
